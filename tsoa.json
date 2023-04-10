@@ -1,0 +1,22 @@
+{
+  "entryFile": "src/index.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "spec": {
+    "outputDirectory": "src",
+    "specVersion": 3,
+    "basePath": "/api/v1",
+    "servers": [
+      {
+        "url": "http://localhost:3030/api/v1",
+        "description": "Local development"
+      },
+      {
+        "url": "https://prod:8080/api/v1",
+        "description": "Prod development"
+      }
+    ]
+  },
+  "routes": {
+    "routesDir": "src"
+  }
+}
