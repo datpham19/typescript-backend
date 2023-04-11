@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "ESNext",
         "sourceMap": true,
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
@@ -9,9 +9,9 @@
         "emitDecoratorMetadata": true,
         "strictPropertyInitialization": false,
         "outDir": "dist",
-        "rootDir": "./",
-        "paths": {                                /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-            "@exmpl/*": ["./src/*", "./dist/*"]
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["src/*"]
         }
     },
     "exclude": [

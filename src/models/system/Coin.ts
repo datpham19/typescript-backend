@@ -1,0 +1,27 @@
+import { createSchema, defaultModel } from '../baseModel.model';
+
+export default createSchema({
+  total_volume: defaultModel.string,
+  total_supply: defaultModel.string,
+  circulating_supply: defaultModel.string,
+  market_cap: defaultModel.string,
+  price_change_percentage_24h: defaultModel.string,
+  cgkId: defaultModel.string,
+  weight: defaultModel.number,
+  coinMarketCapId: defaultModel.string,
+  isDefaultShow: defaultModel.booleanFalse,
+  symbol: defaultModel.string,
+  decimal: defaultModel.number,
+  name: defaultModel.string,
+  image: defaultModel.string,
+  price: defaultModel.string,
+  chain: defaultModel.string,
+  ethPrice: defaultModel.string,
+  btcPrice: defaultModel.string,
+  balance: defaultModel.number,
+  address: defaultModel.string,
+  createdUser: defaultModel.string,
+  isVaultCoin: defaultModel.booleanFalse,
+  isEarnCoin: defaultModel.booleanFalse,
+  isActive: defaultModel.boolean,
+}, 'Coin', null, null);

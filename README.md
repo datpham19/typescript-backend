@@ -16,7 +16,7 @@
 │   │   ├── PostController.ts
 │   │   └── ...
 │   ├── models/
-│   │   ├── UsersModel.ts
+│   │   ├── CardModel.ts
 │   │   ├── Post.ts
 │   │   └── ...
 │   ├── repositories/

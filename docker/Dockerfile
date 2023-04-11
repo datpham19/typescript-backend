@@ -1,0 +1,6 @@
+FROM mongo
+
+ENV MONGO_INITDB_ROOT_USERNAME admin
+ENV MONGO_INITDB_ROOT_PASSWORD admin@123
+
+CMD ["mongod", "--auth"]
