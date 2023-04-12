@@ -5,12 +5,10 @@ import * as swaggerUI from "swagger-ui-express";
 
 import {RedisService} from "../src/lib/redis";
 import {Container} from "typedi";
-import config from "./config";
-import router from './feature/index'
+import router from './router/index'
 import MongoConnection from "./lib/mongo";
 import logger from "../src/utils/logger";
 
-const port = config.appPort;
 const app = express();
 const redisService = Container.get(RedisService);
 const mongoConnection = MongoConnection;

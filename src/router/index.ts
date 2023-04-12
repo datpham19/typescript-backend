@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import Card from '@src/feature/card/router'
-
+import v1 from './v1'
 
 const router = Router();
-
-router.use('cards', Card)
+router.use('/v1', v1);
 
 export default router;
+
