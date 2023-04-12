@@ -4,7 +4,11 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q  src/index.ts\""
+    "start": "node dist/index.js",
+    "predev": "npm run swagger",
+    "prebuild": "npm run swagger",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q  src/index.ts\"",
+    "swagger": "tsoa spec"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
@@ -55,6 +59,7 @@
     "tsoa": "^5.1.1",
     "typedi": "^0.10.0",
     "typeorm": "^0.3.14",
+    "util": "^0.12.5",
     "winston": "^3.8.2",
     "yarn": "^1.22.19"
   }

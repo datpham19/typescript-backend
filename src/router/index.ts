@@ -4,6 +4,6 @@ import Card from '@src/feature/card/router'
 
 const router = Router();
 
-router.use('card', Card)
+router.use('cards', Card)
 
 export default router;

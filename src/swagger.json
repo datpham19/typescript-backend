@@ -5,33 +5,7 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {
-			"UsersModel": {
-				"properties": {
-					"id": {
-						"type": "number",
-						"format": "double"
-					},
-					"name": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"id",
-					"name",
-					"email",
-					"username"
-				],
-				"type": "object",
-				"additionalProperties": false
-			}
-		},
+		"schemas": {},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -44,29 +18,27 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/users": {
+		"/card/{cardId}": {
 			"get": {
-				"operationId": "Index",
+				"operationId": "GetAllCards",
 				"responses": {
 					"200": {
-						"description": "Created",
+						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/UsersModel"
-									},
-									"type": "array"
-								}
+								"schema": {}
 							}
 						}
 					}
 				},
+				"tags": [
+					"Card"
+				],
 				"security": [],
 				"parameters": [
 					{
-						"in": "query",
-						"name": "normalParam",
+						"in": "path",
+						"name": "cardId",
 						"required": true,
 						"schema": {
 							"type": "string"

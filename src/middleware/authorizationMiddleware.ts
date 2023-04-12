@@ -1,7 +1,8 @@
 import redisService from '../../src/app';
 import {mess401, mess404} from "../utils/constants/middleware";
 // import {getLength} from "../utils/functions";
-export default class Middlewares {
+
+export default class AuthorizationMiddleware {
   private redisClient;
 
   constructor() {

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import mongoose from 'mongoose'
 import bluebird from 'bluebird'
-
+import util from 'util'
 import config from "../config";
 import logger from "../utils/logger";
 
@@ -11,21 +11,11 @@ const uri = `mongodb://${mongodbConfig.host}:${mongodbConfig.port}/${mongodbConf
 mongoose.Promise = bluebird
 
 //  To save the logs in database
-mongoose.set('debug', function(coll, method, query, doc, options) {
-  let set = {
-    coll: coll,
-    method: method,
-    query: query,
-    doc: doc,
-    options: options
-  };
-
-  logger.info({
-    dbQuery: set
-  });
-});
+mongoose.set('debug', true)
 
 const opts = {
+  logger: logger,
+  loggerLevel: 'info',
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: config.mongo.useCreateIndex,

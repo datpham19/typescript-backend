@@ -1,9 +1,10 @@
 import {Router} from "express";
-import Middlewares from "../../middleware/authorizationMiddleware";
 import {CardController} from "./index";
+import AuthorizationMiddleware from "../../middleware/authorizationMiddleware";
 
 const router = Router();
+const controller = new CardController()
 
 
-router.get('/', Middlewares.authorizationAPI, CardController.getAllCards);
+router.get('/', AuthorizationMiddleware.authorizationAPI, controller.getAllCards);
 export default router;

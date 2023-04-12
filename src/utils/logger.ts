@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 import * as winston from 'winston'
-
+import { pid } from 'process';
 import config from '../config'
 
 // npm debug levels (winston default):
@@ -14,6 +14,11 @@ import config from '../config'
 //   debug: 5,
 //   silly: 6
 // }
+
+const customFormat = winston.format.printf(({ level, message, label, timestamp }) => {
+  const className = label ? label.toUpperCase() : '';
+  return `[${level}-${className}:${pid}] ${timestamp} ${message}`;
+});
 
 const prettyJson = winston.format.printf(info => {
   if (info.message.constructor === Object) {
@@ -33,7 +38,7 @@ const logger = winston.createLogger({
     winston.format.timestamp({format: 'YYYY-MM-DD HH:mm:ss.SSS'}),
     prettyJson
   ),
-  defaultMeta: {service: 'api-example'},
+  defaultMeta: {service: 'typescript-backend'},
   transports: [new winston.transports.Console({})]
 })
 
