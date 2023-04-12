@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Put, Delete, Route, Body, Path, Tags, Response, Middlewares} from 'tsoa';
+import {Controller, Get, Post, Put, Delete, Route, Body, Path, Tags, Response, Middlewares, Security} from 'tsoa';
 import {CardModel} from '../../models/card.model';
 import {ICardInput, ICardOutput} from './schema';
 import {Request, Response as ExpressResponse, NextFunction} from 'express';
@@ -6,12 +6,15 @@ import mongoose, {Schema} from 'mongoose';
 import {JsonResponse} from "../../utils/response";
 import logger from "../../utils/logger";
 import AuthorizationMiddleware from '../../middleware/authorizationMiddleware';
+import {expressAuthentication} from "../../middleware/authentication";
 
 @Route('/card')
 @Tags('Card')
 export class CardController extends Controller {
   @Get('{cardId}')
-  public async getAllCards(@Path() cardId: string): Promise<any> {
+  @Security('bearer')
+  @Middlewares(expressAuthentication)
+  public async getAllCards(): Promise<ICardOutput[]> {
     const cards = await CardModel.find();
     return cards
   }

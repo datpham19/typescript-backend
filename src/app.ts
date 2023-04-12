@@ -6,8 +6,9 @@ import * as swaggerUI from "swagger-ui-express";
 import {RedisService} from "../src/lib/redis";
 import {Container} from "typedi";
 import router from './router/index'
+import config from "./config";
 import MongoConnection from "./lib/mongo";
-import logger from "../src/utils/logger";
+import logger, {httpLoggerMiddleware} from "../src/utils/logger";
 
 const app = express();
 const redisService = Container.get(RedisService);
@@ -18,6 +19,7 @@ mongoConnection.open().then(() => {
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(httpLoggerMiddleware)
 app.use(["/openapi", "/docs", "/swagger"], swaggerUI.serve, swaggerUI.setup(swaggerJson));
 
 app.use('/api', router);

@@ -5,7 +5,44 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"ICardOutput": {
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"user": {
+						"properties": {
+							"email": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"email",
+							"name"
+						],
+						"type": "object"
+					},
+					"_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message",
+					"name",
+					"user",
+					"_id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -26,7 +63,12 @@
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ICardOutput"
+									},
+									"type": "array"
+								}
 							}
 						}
 					}
@@ -34,7 +76,11 @@
 				"tags": [
 					"Card"
 				],
-				"security": [],
+				"security": [
+					{
+						"bearer": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",

@@ -1,6 +1,14 @@
 {
   "entryFile": "src/app.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
   "spec": {
     "outputDirectory": "src",
     "specVersion": 3,
@@ -17,6 +25,7 @@
     ]
   },
   "routes": {
-    "routesDir": "src"
+    "routesDir": "src",
+    "authenticationModule": "src/middleware/authentication.ts"
   }
 }
