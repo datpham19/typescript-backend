@@ -28,11 +28,13 @@ const opts = {
 
 
 export default class MongoConnection {
-  static async open(): Promise<void> {
+  async open(): Promise<void> {
     try {
       await mongoose.connect(uri, {
         user: mongodbConfig.user,
         pass: mongodbConfig.password,
+      }).then(() => {
+        logger.info(`MongoDB connected to ${uri}`)
       })
       await mongoose.connection.db.listCollections().toArray().then((collections) => {
         collections.forEach((collection) => {
@@ -55,5 +57,3 @@ export default class MongoConnection {
     }
   }
 }
-
-// export default MongoConnection.getInstance()

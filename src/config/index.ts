@@ -75,11 +75,11 @@ const config: Config = {
   },
 
   pg: {
-    host: parsedEnv.DB_HOST as string,
-    port: parsedEnv.DB_PORT as number,
-    user: parsedEnv.DB_USERNAME as string,
-    password: parsedEnv.DB_PASSWORD as string,
-    database: parsedEnv.DB_NAME as string
+    host: parsedEnv.PG_HOST as string,
+    port: parsedEnv.PG_PORT as number,
+    user: parsedEnv.PG_USERNAME as string,
+    password: parsedEnv.PG_PASSWORD as string,
+    database: parsedEnv.PG_NAME as string
   },
 
   morganLogger: parsedEnv.MORGAN_LOGGER as boolean,

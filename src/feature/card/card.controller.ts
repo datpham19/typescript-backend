@@ -1,24 +1,28 @@
-import {Controller, Get, Post, Put, Delete, Route, Body, Path, Tags, Response, Middlewares, Security} from 'tsoa';
 import {CardModel} from '../../models/card.model';
-import {ICardInput, ICardOutput} from './schema';
+import {ICardInput, ICardOutput} from './card.schema';
 import {Request, Response as ExpressResponse, NextFunction} from 'express';
 import mongoose, {Schema} from 'mongoose';
 import {JsonResponse} from "../../utils/response";
 import logger from "../../utils/logger";
-import AuthorizationMiddleware from '../../middleware/authorizationMiddleware';
-import {expressAuthentication} from "../../middleware/authentication";
 
-@Route('/cards')
-@Tags('Cards')
-export class CardController extends Controller {
-  @Get('{cardId}')
-  @Security('bearer')
+export class CardController {
   static async getAllCards(req: Request, res: ExpressResponse, next:NextFunction ) {
     try {
       const cards = await CardModel.find();
       JsonResponse.success(res, cards);
     } catch (error) {
       logger.error(`Error getting cards: ${error.message}`);
+      JsonResponse.error(res, error.message);
+    }
+  }
+
+  static async createCard(req: Request, res: ExpressResponse, next:NextFunction ) {
+    try {
+      const card = new CardModel(req.body);
+      await card.save();
+      JsonResponse.success(res, card.toObject());
+    } catch (error) {
+      logger.error(`Error creating card: ${error.message}`);
       JsonResponse.error(res, error.message);
     }
   }

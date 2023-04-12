@@ -1,102 +1,12 @@
 {
-	"components": {
-		"examples": {},
-		"headers": {},
-		"parameters": {},
-		"requestBodies": {},
-		"responses": {},
-		"schemas": {
-			"ICardOutput": {
-				"properties": {
-					"message": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"user": {
-						"properties": {
-							"email": {
-								"type": "string"
-							},
-							"name": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"email",
-							"name"
-						],
-						"type": "object"
-					},
-					"_id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"message",
-					"name",
-					"user",
-					"_id"
-				],
-				"type": "object",
-				"additionalProperties": false
-			}
-		},
-		"securitySchemes": {}
-	},
-	"info": {
-		"title": "typescript-backend",
-		"version": "1.0.0",
-		"license": {
-			"name": "MIT"
-		},
-		"contact": {}
-	},
-	"openapi": "3.0.0",
-	"paths": {
-		"/card/{cardId}": {
-			"get": {
-				"operationId": "GetAllCards",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/ICardOutput"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Card"
-				],
-				"security": [
-					{
-						"bearer": []
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "cardId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		}
-	},
-	"servers": [
-		{
-			"url": "/api/v1"
-		}
-	]
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "TypeScript Boilerplate",
+    "description": "A description of your project",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  }
 }

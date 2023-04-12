@@ -36,7 +36,7 @@
 │   │   ├── redis.ts
 │   │   └── ...
 │   ├── app.ts
-│   └── index.ts
+│   └── card.controller.ts
 ├── tests/
 │   ├── controllers/
 │   │   ├── UserControllers.test.ts
