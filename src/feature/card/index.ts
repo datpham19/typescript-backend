@@ -8,15 +8,19 @@ import logger from "../../utils/logger";
 import AuthorizationMiddleware from '../../middleware/authorizationMiddleware';
 import {expressAuthentication} from "../../middleware/authentication";
 
-@Route('/card')
-@Tags('Card')
+@Route('/cards')
+@Tags('Cards')
 export class CardController extends Controller {
   @Get('{cardId}')
   @Security('bearer')
-  @Middlewares(expressAuthentication)
-  public async getAllCards(): Promise<ICardOutput[]> {
-    const cards = await CardModel.find();
-    return cards
+  static async getAllCards(req: Request, res: ExpressResponse, next:NextFunction ) {
+    try {
+      const cards = await CardModel.find();
+      JsonResponse.success(res, cards);
+    } catch (error) {
+      logger.error(`Error getting cards: ${error.message}`);
+      JsonResponse.error(res, error.message);
+    }
   }
 
   // @Post('/')

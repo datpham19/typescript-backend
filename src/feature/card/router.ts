@@ -3,8 +3,7 @@ import {CardController} from "./index";
 import AuthorizationMiddleware from "../../middleware/authorizationMiddleware";
 
 const router = Router();
-const controller = new CardController()
 
 
-router.get('/', AuthorizationMiddleware.authorizationAPI, controller.getAllCards);
+router.get('/', AuthorizationMiddleware.authorizationAPI, CardController.getAllCards);
 export default router;
