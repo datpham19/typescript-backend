@@ -10,8 +10,9 @@
         "strictPropertyInitialization": false,
         "outDir": "dist",
         "baseUrl": ".",
+        "rootDir": "src",
         "paths": {
-            "@src/*": ["src/*"]
+            "@src/*": ["src/*", "*/src/"],
         }
     },
     "exclude": [

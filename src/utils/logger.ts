@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 
-import winston from 'winston'
+import * as winston from 'winston'
 
-import config from '@src/config'
+import config from '../config'
 
 // npm debug levels (winston default):
 // {

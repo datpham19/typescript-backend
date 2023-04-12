@@ -1,11 +1,6 @@
-import {mess401, mess404} from "@src/utils/constants/middleware";
-import CommonServices from "@src/utils/services/common.service";
-import get from "lodash/get";
-import moment from "moment";
-import {Container} from "typedi";
-import {getLength, getStorage, lowerCase, validateEmailRule} from "@src/utils/functions";
-import User from "@src/models/system/User";
-import redisService from '@src/app';
+import redisService from '../../src/app';
+import {mess401, mess404} from "../utils/constants/middleware";
+// import {getLength} from "../utils/functions";
 export default class Middlewares {
   private redisClient;
 
@@ -13,10 +8,12 @@ export default class Middlewares {
     this.redisClient = redisService;
   }
   static async authorizationAPI(req, res, next) {
+    const tokenAuthen = req.get('authorization').replace('Bearer ', '');
+
     if (!req.get('authorization')) return res.status(404).send(mess404);
     // Header bearer token just a random string greater than 10 characters
-    if (req.get('authorization').length < 10) return res.status(401).send(mess401);
-
+    if (tokenAuthen.length < 10) return res.status(401).send(mess401);
+    return next();
 
     // const checkSignature = (user, userAddress) => {
     //   // const stringSignature = req.get('signature')
@@ -67,15 +64,15 @@ export default class Middlewares {
     // }
   }
 
-  static async validateUserOnchain(req, res, next) {
-    const decodeData = req.user;
-    if (!decodeData) return res.status(404).send(mess404);
-
-    const [address, chain] = decodeData.split('-');
-
-    if (getLength(address) === 0 || getLength(chain) === 0) return res.status(404).send(mess404);
-
-    next();
-  }
+  // static async validateUserOnchain(req, res, next) {
+  //   const decodeData = req.user;
+  //   if (!decodeData) return res.status(404).send(mess404);
+  //
+  //   const [address, chain] = decodeData.split('-');
+  //
+  //   if (getLength(address) === 0 || getLength(chain) === 0) return res.status(404).send(mess404);
+  //
+  //   next();
+  // }
 
 }

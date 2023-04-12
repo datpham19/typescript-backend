@@ -1,4 +1,4 @@
-import { createSchema, defaultModel } from '../baseModel.model';
+import { createSchema, defaultModel } from '../models/baseModel.model';
 
 export default createSchema({
   id: defaultModel.string,

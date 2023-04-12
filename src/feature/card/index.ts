@@ -1,17 +1,24 @@
 import { Controller, Get, Post, Put, Delete, Route, Body, Path, Tags, Response } from 'tsoa';
-import {CardModel} from '@src/models/card.model';
-import { ICardInput, ICardOutput } from '@src/feature/card/schema';
+import {CardModel} from '../../models/card.model';
+import { ICardInput, ICardOutput } from './schema';
 import { Request, Response as ExpressResponse, NextFunction } from 'express';
 import mongoose from 'mongoose';
-import {JsonResponse} from "@src/utils/response";
+import {JsonResponse} from "../../utils/response";
+import logger from "../../utils/logger";
 
 @Route('/cards')
 @Tags('Cards')
 export class CardController extends Controller {
   @Get('/')
-  static async getAllCards(req: Request, res: ExpressResponse, next: NextFunction): Promise<void> {
-    const cards = await CardModel.find();
-    return JsonResponse(res, 200, cards);
+  static async getAllCards(req: Request, res: ExpressResponse, next: NextFunction) {
+    try {
+      const cards = await CardModel.find();
+      res.status(200).json(cards); // send the cards data as a JSON response
+    } catch (error) {
+      // handle any errors that occur during the query
+      logger.error(`Error getting cards: ${error.message}`);
+      res.status(500).json({ error: error.message });
+    }
   }
 
   @Post('/')

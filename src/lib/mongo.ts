@@ -1,16 +1,29 @@
 /* istanbul ignore file */
-
 import mongoose from 'mongoose'
+import bluebird from 'bluebird'
 
-import logger from '@src/utils/logger'
-import config from "@src/config";
+import config from "../config";
+import logger from "../utils/logger";
 
 const mongodbConfig = config.mongo
-const uri = `mongodb://${mongodbConfig.user}:${mongodbConfig.password}@${mongodbConfig.host}:${mongodbConfig.port}/${mongodbConfig.database}`
+const uri = `mongodb://${mongodbConfig.host}:${mongodbConfig.port}/${mongodbConfig.database}?authSource=admin`
 
-mongoose.Promise = global.Promise
-mongoose.set('debug', mongodbConfig.debug !== undefined)
+mongoose.Promise = bluebird
 
+//  To save the logs in database
+mongoose.set('debug', function(coll, method, query, doc, options) {
+  let set = {
+    coll: coll,
+    method: method,
+    query: query,
+    doc: doc,
+    options: options
+  };
+
+  logger.info({
+    dbQuery: set
+  });
+});
 
 const opts = {
   useNewUrlParser: true,
@@ -24,40 +37,19 @@ const opts = {
 }
 
 
-
-class MongoConnection {
-  private static _instance: MongoConnection
-
-  static getInstance(): MongoConnection {
-    if (!MongoConnection._instance) {
-      MongoConnection._instance = new MongoConnection()
-    }
-    return MongoConnection._instance
-  }
-
-  public async open(): Promise<void> {
+export default class MongoConnection {
+  static async open(): Promise<void> {
     try {
-
-      logger.debug('connecting to mongo db: ' + uri)
-      await mongoose.connect(uri, opts)
-
-      mongoose.connection.on('connected', () => {
-        logger.info('Mongo: connected')
+      await mongoose.connect(uri, {
+        user: mongodbConfig.user,
+        pass: mongodbConfig.password,
+      })
+      await mongoose.connection.db.listCollections().toArray().then((collections) => {
+        collections.forEach((collection) => {
+          logger.info(`db.open: ${collection.name}`)
+        })
       })
 
-      mongoose.connection.on('disconnected', () => {
-        logger.error('Mongo: disconnected')
-      })
-
-      mongoose.connection.on('error', (err) => {
-        logger.error(`Mongo:  ${String(err)}`)
-        if (err.name === "MongoNetworkError") {
-          setTimeout(function () {
-            mongoose.connect(uri, opts).catch(() => {
-            })
-          }, 5000)
-        }
-      })
     } catch (err) {
       logger.error(`db.open: ${err}`)
       throw err
@@ -74,4 +66,4 @@ class MongoConnection {
   }
 }
 
-export default MongoConnection.getInstance()
+// export default MongoConnection.getInstance()

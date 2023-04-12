@@ -1,10 +1,9 @@
-import express from 'express';
-import Middlewares from "@src/middleware/authorizationMiddleware";
-import {CardController} from "@src/feature/card/index";
+import {Router} from "express";
+import Middlewares from "../../middleware/authorizationMiddleware";
+import {CardController} from "./index";
 
-const router = express.Router();
+const router = Router();
 
 
-router.get('/', Middlewares.authorizationAPI, CardController.getAllCards)
-
+router.get('/', Middlewares.authorizationAPI, CardController.getAllCards);
 export default router;
