@@ -4,8 +4,8 @@ import * as path from 'path'
 
 const env = dotenvExtended.load({
   path: process.env.ENV_FILE,
-  defaults: path.resolve(__dirname, "../.env"),
-  schema: path.resolve(__dirname, "../.env"),
+  defaults: path.resolve(__dirname, "../../.env"),
+  schema: path.resolve(__dirname, "../../.env"),
   includeProcessEnv: true,
   silent: false,
   errorOnMissing: true,
