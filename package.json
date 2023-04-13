@@ -4,7 +4,10 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q  src/index.ts\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q  src/index.ts\"",
+    "test": "NODE_ENV=test mocha --recursive 'app/feature/**/*.test.ts' --exit",
+    "build": "npx tsc",
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
