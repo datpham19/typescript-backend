@@ -1,23 +1,29 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "ESNext",
-        "sourceMap": true,
-        "resolveJsonModule": true,
-        "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "strictPropertyInitialization": false,
-        "outDir": "dist",
-        "baseUrl": ".",
-        "rootDir": "src",
-        "paths": {
-            "@src/*": ["src/*", "*/src/"],
-        }
-    },
-    "exclude": [
-        "node_modules"
-    ],
-    "include": ["src/**/*"],
-
+  "compilerOptions": {
+    "rootDir": "src",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "noLib": false,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "target": "ES2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "incremental": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

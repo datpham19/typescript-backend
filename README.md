@@ -1,90 +1,93 @@
-# Coin98 ExpressJS - Typescript
+# Awesome NestJS Boilerplate v9
 
-## ❯ Table of Contents
+[![Awesome NestJS](https://img.shields.io/badge/Awesome-NestJS-blue.svg?longCache=true&style=flat-square)](https://github.com/juliandavidmr/awesome-nestjs)
 
-[__TOC__]
+> This is an ever-evolving, very opinionated architecture and dev environment for new node projects using [NestJS](https://nestjs.com). Questions, feedback, and for now, even bikeshedding are welcome. 😄
 
-![divider](./divider.png)
-
-### Tech Stack
-
-- Language: [NodeJS](https://nodejs.org/en/), [TypeScripts](https://www.typescriptlang.org/)
-- Database: [Redis](https://redis.io/), [MongoDB](https://www.mongodb.com/), [PostgreSQL](https://www.postgresql.org/), [ElasticSearch](https://www.elastic.co/)
-- Container: [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/)
-- Package manager: [Yarn](https://yarnpkg.com/en/)
-- Linter: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
-- Package and library:
-    - Framework: [express](https://expressjs.com/)
-    - Logger: [winston](https://npmjs.com/package/winston), [morgan](https://www.npmjs.com/package/morgan)
-    - ORM: [Sequelize](https://sequelize.org/), [Mongoose](https://mongoosejs.com/)
-    - Cache: [redis](https://www.npmjs.com/package/redis)
-    - Search: [elasticsearch](https://www.npmjs.com/package/elasticsearch)
-
-### Coding Principle and Convention
-
-- Group related files by directory, it's easy to focusing on small portions and
-  avoid complexity
-    + Organize files by feature not by function.
-    + Store the test files next to the code.
-- Be pragmatic modules: the node philosophy about **small modules** and **single
-  purpose modules**
-    + Only build modules as needed follow YANGI principle
-- Place Your Test Files Next to The Implementation
-- Put your long npm scripts in a scripts directory
-- Reduce cross-cutting coupling with Events
-- Code flow is followable - magic directories in the filesystem. The app starts at **app/server.js** and you can see everything it loads and executes by following the code.
-    + Don't do magic things
-    + Don't autoload files from
-    + Don't do silly metaprogramming
-- Be easy to locate code
-    + Name are meaningful and accurate
-    + Crufty code is fully removed, not left around in a orphan file or just
-      commented out
-- Use simple and obvious naming
-- Use lower-kebab-case filenames
-    + Npm forbids uppercase in new package names.
-    + This format avoids filesystem case sensitivity issues across platforms
-- Variable name must be camelCase
-- For more detail, please refer to [styleguide.md](./styleguide.md)
-
-### Structure
-
-| Name                                        | Description                                                |
-|---------------------------------------------|------------------------------------------------------------|
-| **.vscode/**                                | VSCode tasks, launch configuration and some other settings |
-| **dist/**                                   | Compiled source files will be placed here                  |
-| **src/**                                    | Source files                                               |
-| **src/config/**                             | Configure environment and swagger                          |
-| **src/feature/<feat>/<feat>.controller.ts** | REST feature Controllers                                   |
-| **src/feature/<feat>/<feat>.router.ts**     | Router include endpoint and middleware                     |
-| **src/feature/<feat>/<feat>.schema.ts**     | Schema of request and response                             |
-| **src/feature/<feat>/<feat>.test.ts**       | Unit test                                                  |
-| **src/lib/**                                | Connection of databases                                    |
-| **src/models/**                             | Model entities of database                                 |
-| **src/utils/**                              | Additional function                                        |
-| .env.example                                | Example Environment configurations                         |
-| .env.test                                   | Test environment configurations                            |
-
-### Installation
-
-#### Create config file
-
-Create `.env` file. Copy content from `.evn.default` into `.env`. Change config in `.env` corresponding to your environment
-
-#### Install package
+## Getting started
 
 ```bash
-yarn install
+# 1. Clone the repository or click on "Use this template" button.
+npx degit NarHakobyan/awesome-nest-boilerplate my-nest-app
+
+# 2. Enter your newly-cloned folder.
+cd my-nest-app
+
+# 3. Create Environment variables file.
+cp .env.example .env
+
+# 3. Install dependencies. (Make sure yarn is installed: https://yarnpkg.com/lang/en/docs/install)
+yarn
 ```
 
-#### Run
+## Checklist
+
+When you use this template, try follow the checklist to update your info properly
+
+- [ ] Change the author name in `LICENSE`
+- [ ] Change configurations in `.env`
+- [ ] Remove the `.github` folder which contains the funding info
+- [ ] Clean up the README.md file
+
+And, enjoy :)
+
+
+### Development
+```bash
+# 4. Run development server and open http://localhost:3000
+yarn start:dev
+
+# 5. Read the documentation linked below for "Setup and development".
+```
+
+### Build
+
+To build the App, run
 
 ```bash
-yarn dev
+yarn build:prod
 ```
 
-#### Testing
+And you will see the generated file in `dist` that ready to be served.
 
-```bash
-yarn run test
-```
+## Features
+
+<dl>
+  <!-- <dt><b>Quick scaffolding</b></dt>
+  <dd>Create modules, services, controller - right from the CLI!</dd> -->
+
+  <dt><b>Instant feedback</b></dt>
+  <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes are reflected instantaneously.</dd>
+
+  <dt><b>JWT Authentication</b></dt>
+  <dd>Installed and configured JWT authentication.</dd>
+
+  <dt><b>Next generation Typescript</b></dt>
+  <dd>Always up to date typescript version.</dd>
+
+  <dt><b>Industry-standard routing</b></dt>
+  <dd>It's natural to want to add pages (e.g. /about`) to your application, and routing makes this possible.</dd>
+
+  <dt><b>Environment Configuration</b></dt>
+  <dd>development, staging and production environment configurations</dd>
+
+  <dt><b>Swagger Api Documentation</b></dt>
+  <dd>Already integrated API documentation. To see all available endpoints visit http://localhost:3000/documentation</dd>
+
+  <dt><b>Linter</b></dt>  
+  <dd>eslint + prettier = ❤️</dd>
+</dl>
+
+## Documentation
+
+This project includes a `docs` folder with more details on:
+
+1.  [Setup and development](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/development.html#first-time-setup)
+1.  [Architecture](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/architecture.html)
+1.  [Naming Cheatsheet](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/naming-cheatsheet.html)
+
+## Community
+
+For help, discussion about best practices, or any other conversation that would benefit from being searchable:
+
+[Discuss Awesome NestJS Boilerplate on GitHub](https://github.com/NarHakobyan/awesome-nest-boilerplate/discussions)
